@@ -1,0 +1,40 @@
+﻿<Window x:Class="Supervisor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supervisor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ProgressBar 
+            Value="{Binding CpuUsage}" 
+            Minimum="0" 
+            Maximum="100" 
+            Height="30" 
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Width="300" Margin="0,77,0,0" />
+
+        <TextBlock Text="{Binding CpuUsage, StringFormat={}{0:F2}%}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontSize="16" Margin="0,81,0,0" />
+
+        <ProgressBar 
+            Value="{Binding RamUsagePercentage}" 
+            Minimum="0" 
+            Maximum="100" 
+            Height="30" 
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Width="300"
+            Margin="0,30,0,0" />
+
+        <TextBlock Text="{Binding RamUsage}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontSize="16"
+                   Margin="0,34,0,0" />
+    </Grid>
+</Window>
