@@ -27,8 +27,10 @@ namespace Supervisor.ViewModels
         private string processTotal;
         [ObservableProperty]
         private string threadTotal;
-
-
+        [ObservableProperty]
+        private string cpuName;
+        [ObservableProperty]
+        private string pcName;
 
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
@@ -47,6 +49,7 @@ namespace Supervisor.ViewModels
             threadCounter = new PerformanceCounter("System", "Threads");
 
             totalRamInMB = GetTotalRamInMB();
+            GetInformations();
 
             timer = new DispatcherTimer
             {
@@ -100,6 +103,27 @@ namespace Supervisor.ViewModels
         private void GetTotalThreads(object? sender, EventArgs e)
         {
             ThreadTotal = Convert.ToString(threadCounter.NextValue());
+        }
+
+        private void GetInformations()
+        {
+            GetCpuName();
+            GetPcName();
+        }
+
+        private void GetCpuName()
+        {
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Name FROM Win32_Processor");
+
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                CpuName = obj["Name"].ToString();
+            }
+        }
+
+        private void GetPcName()
+        {
+            PcName = Environment.MachineName;
         }
     }
 }

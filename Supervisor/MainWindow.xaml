@@ -68,8 +68,12 @@
             FontWeight="Bold" Foreground="White" FontSize="14"/>
         <TextBlock x:Name="TotalProcessValue" Text="{Binding ProcessTotal}" HorizontalAlignment="Left" Margin="104,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
         <TextBlock x:Name="TotalThreadsValue" Text="{Binding ThreadTotal}" HorizontalAlignment="Left" Margin="104,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="White"/>
-        <Label Content="RAM usage" HorizontalAlignment="Left" Margin="26,19,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Franklin Gothic Medium"/>
-        <Label Content="CPU usage" HorizontalAlignment="Left" Margin="26,80,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Franklin Gothic Medium"/>
+        <Label Content="RAM usage" HorizontalAlignment="Left" Margin="26,19,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <Label Content="CPU usage" HorizontalAlignment="Left" Margin="26,80,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <Label Content="CPU model :" HorizontalAlignment="Left" Margin="435,74,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <TextBlock x:Name="CpuNameValue" Text="{Binding CpuName}" HorizontalAlignment="Left" Margin="526,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <Label Content="PC name :" HorizontalAlignment="Left" Margin="435,40,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <TextBlock x:Name="PcNameValue" Text="{Binding PcName}" HorizontalAlignment="Left" Margin="510,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="White"/>
     </Grid>
 </Window>
     
