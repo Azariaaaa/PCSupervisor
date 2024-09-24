@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Supervisor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="450" 
+        Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/bg3.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
         <ProgressBar 
             Value="{Binding CpuUsage}" 
@@ -13,13 +18,13 @@
             Maximum="100" 
             Height="30" 
             VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            Width="300" Margin="0,77,0,0" />
+            HorizontalAlignment="Left"
+            Width="300" Margin="29,106,0,0" />
 
         <TextBlock Text="{Binding CpuUsage, StringFormat={}{0:F2}%}"
                    VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   FontSize="16" Margin="0,81,0,0" />
+                   HorizontalAlignment="Left"
+                   FontSize="16" Margin="164,110,0,0" />
 
         <ProgressBar 
             Value="{Binding RamUsagePercentage}" 
@@ -27,14 +32,28 @@
             Maximum="100" 
             Height="30" 
             VerticalAlignment="Top"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Left"
             Width="300"
-            Margin="0,30,0,0" />
+            Margin="29,45,0,0" />
 
         <TextBlock Text="{Binding RamUsage}"
                    VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    FontSize="16"
-                   Margin="0,34,0,0" />
+                   Margin="39,49,0,0" TextAlignment="Center" />
+        <Label x:Name="SystemStartupTimeLabel" 
+               Content="System startup time :" 
+               HorizontalAlignment="Left" 
+               Margin="29,163,0,0" 
+               VerticalAlignment="Top" 
+               FontWeight="Bold" Foreground="White" FontSize="14"/>
+        <TextBlock x:Name="SystemStartupTimeValue" 
+                   Text="{Binding SystemUpTime}" 
+                   HorizontalAlignment="Left" 
+                   Margin="184,170,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Bold" FontSize="14" Foreground="White"/>
     </Grid>
 </Window>
+    

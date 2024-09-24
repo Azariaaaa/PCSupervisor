@@ -8,9 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="bg3.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
-    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="bg3.jpg" />
   </ItemGroup>
 
 </Project>

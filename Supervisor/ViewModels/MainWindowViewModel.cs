@@ -21,8 +21,11 @@ namespace Supervisor.ViewModels
         public string? ramUsage;
         [ObservableProperty]
         public float ramUsagePercentage;
+        [ObservableProperty]
+        public string systemUpTime;
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
+        private PerformanceCounter systemUpTimeCounter;
         private DispatcherTimer timer;
         private float totalRamInMB;
 
@@ -30,6 +33,7 @@ namespace Supervisor.ViewModels
         {
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            systemUpTimeCounter = new PerformanceCounter("System", "System Up Time");
 
             totalRamInMB = GetTotalRamInMB();
 
@@ -39,15 +43,16 @@ namespace Supervisor.ViewModels
             };
             timer.Tick += GetCpuUsage;
             timer.Tick += GetRamUsage;
+            timer.Tick += GetSystemUpTime;
             timer.Start();
         }
 
-        private void GetCpuUsage(object sender, EventArgs e)
+        private void GetCpuUsage(object? sender, EventArgs e)
         {
             CpuUsage = cpuCounter.NextValue();
         }
 
-        private void GetRamUsage(object sender, EventArgs e)
+        private void GetRamUsage(object? sender, EventArgs e)
         {
             float availableRamInMB = ramCounter.NextValue();
             float usedRamInMB = totalRamInMB - availableRamInMB;
@@ -65,6 +70,13 @@ namespace Supervisor.ViewModels
                 totalRam += Convert.ToSingle(obj["Capacity"]) / (1024 * 1024);
             }
             return totalRam;
+        }
+
+        private void GetSystemUpTime(object? sender, EventArgs e)
+        {
+            float systemUpTimeInSeconds = systemUpTimeCounter.NextValue();
+            TimeSpan upTime = TimeSpan.FromSeconds(systemUpTimeInSeconds);
+            SystemUpTime = $"{upTime.Hours:D2}:{upTime.Minutes:D2}:{upTime.Seconds:D2}";
         }
     }
 }
