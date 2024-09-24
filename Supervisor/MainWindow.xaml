@@ -74,6 +74,8 @@
         <TextBlock x:Name="CpuNameValue" Text="{Binding CpuName}" HorizontalAlignment="Left" Margin="526,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
         <Label Content="PC name :" HorizontalAlignment="Left" Margin="435,40,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
         <TextBlock x:Name="PcNameValue" Text="{Binding PcName}" HorizontalAlignment="Left" Margin="510,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="White"/>
+        <Label Content="GPU model :" HorizontalAlignment="Left" Margin="435,107,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <TextBlock x:Name="GpuModelValue" Text="{Binding GpuName}" HorizontalAlignment="Left" Margin="527,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="14" FontWeight="Bold"/>
     </Grid>
 </Window>
     

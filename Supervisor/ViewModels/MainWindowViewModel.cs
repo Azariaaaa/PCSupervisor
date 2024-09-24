@@ -31,6 +31,8 @@ namespace Supervisor.ViewModels
         private string cpuName;
         [ObservableProperty]
         private string pcName;
+        [ObservableProperty]
+        private string gpuName;
 
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
@@ -109,6 +111,7 @@ namespace Supervisor.ViewModels
         {
             GetCpuName();
             GetPcName();
+            GetGpuName();
         }
 
         private void GetCpuName()
@@ -124,6 +127,16 @@ namespace Supervisor.ViewModels
         private void GetPcName()
         {
             PcName = Environment.MachineName;
+        }
+
+        private void GetGpuName()
+        {
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Name FROM Win32_VideoController");
+
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                GpuName = obj["Name"].ToString();
+            }
         }
     }
 }
