@@ -54,6 +54,20 @@
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
                    FontWeight="Bold" FontSize="14" Foreground="White"/>
+        <Label x:Name="ProcessTotalLabel" 
+            Content="Process :" 
+            HorizontalAlignment="Left" 
+            Margin="29,192,0,0" 
+            VerticalAlignment="Top" 
+            FontWeight="Bold" Foreground="White" FontSize="14"/>
+        <Label x:Name="TotalThreadsLabel" 
+            Content="Threads :" 
+            HorizontalAlignment="Left" 
+            Margin="29,221,0,0" 
+            VerticalAlignment="Top" 
+            FontWeight="Bold" Foreground="White" FontSize="14"/>
+        <TextBlock x:Name="TotalProcessValue" Text="{Binding ProcessTotal}" HorizontalAlignment="Left" Margin="104,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <TextBlock x:Name="TotalThreadsValue" Text="{Binding ThreadTotal}" HorizontalAlignment="Left" Margin="104,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="White"/>
     </Grid>
 </Window>
     

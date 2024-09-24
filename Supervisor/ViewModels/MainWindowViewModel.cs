@@ -33,6 +33,8 @@ namespace Supervisor.ViewModels
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
         private PerformanceCounter systemUpTimeCounter;
+        private PerformanceCounter processCounter;
+        private PerformanceCounter threadCounter;
         private DispatcherTimer timer;
         private float totalRamInMB;
 
@@ -41,6 +43,8 @@ namespace Supervisor.ViewModels
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
             systemUpTimeCounter = new PerformanceCounter("System", "System Up Time");
+            processCounter = new PerformanceCounter("System", "Processes");
+            threadCounter = new PerformanceCounter("System", "Threads");
 
             totalRamInMB = GetTotalRamInMB();
 
@@ -51,6 +55,8 @@ namespace Supervisor.ViewModels
             timer.Tick += GetCpuUsage;
             timer.Tick += GetRamUsage;
             timer.Tick += GetSystemUpTime;
+            timer.Tick += GetTotalProcess;
+            timer.Tick += GetTotalThreads;
             timer.Start();
         }
 
@@ -84,6 +90,16 @@ namespace Supervisor.ViewModels
             float systemUpTimeInSeconds = systemUpTimeCounter.NextValue();
             TimeSpan upTime = TimeSpan.FromSeconds(systemUpTimeInSeconds);
             SystemUpTime = $"{upTime.Hours:D2}:{upTime.Minutes:D2}:{upTime.Seconds:D2}";
+        }
+
+        private void GetTotalProcess(object? sender, EventArgs e)
+        {
+            ProcessTotal = Convert.ToString(processCounter.NextValue());
+        }
+
+        private void GetTotalThreads(object? sender, EventArgs e)
+        {
+            ThreadTotal = Convert.ToString(threadCounter.NextValue());
         }
     }
 }
