@@ -16,13 +16,20 @@ namespace Supervisor.ViewModels
     public partial class MainWindowViewModel : ObservableObject
     {
         [ObservableProperty]
-        public float? cpuUsage;
+        private float? cpuUsage;
         [ObservableProperty]
-        public string? ramUsage;
+        private string? ramUsage;
         [ObservableProperty]
-        public float ramUsagePercentage;
+        private float ramUsagePercentage;
         [ObservableProperty]
-        public string systemUpTime;
+        private string systemUpTime;
+        [ObservableProperty]
+        private string processTotal;
+        [ObservableProperty]
+        private string threadTotal;
+
+
+
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
         private PerformanceCounter systemUpTimeCounter;
