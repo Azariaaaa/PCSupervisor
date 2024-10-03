@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using LibreHardwareMonitor.Hardware;
+using Supervisor.Services;
 
 namespace Supervisor.ViewModels
 {
@@ -33,17 +36,29 @@ namespace Supervisor.ViewModels
         private string pcName;
         [ObservableProperty]
         private string gpuName;
+        [ObservableProperty]
+        private ObservableCollection<string> cpusTemperatures;
 
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
         private PerformanceCounter systemUpTimeCounter;
         private PerformanceCounter processCounter;
         private PerformanceCounter threadCounter;
+        Computer Computer { get; set; }
+        UpdateVisitor UpdateVisitor { get; set; }
         private DispatcherTimer timer;
         private float totalRamInMB;
 
         public MainWindowViewModel()
         {
+            Computer = new Computer();
+            UpdateVisitor = new UpdateVisitor();
+            CpusTemperatures = new ObservableCollection<string>();
+
+            Computer.IsCpuEnabled = true;
+            Computer.Open();
+            Computer.Accept(UpdateVisitor);
+
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
             systemUpTimeCounter = new PerformanceCounter("System", "System Up Time");
@@ -57,12 +72,30 @@ namespace Supervisor.ViewModels
             {
                 Interval = TimeSpan.FromMilliseconds(355),
             };
+            timer.Tick += GetCpuTemperatures;
             timer.Tick += GetCpuUsage;
             timer.Tick += GetRamUsage;
             timer.Tick += GetSystemUpTime;
             timer.Tick += GetTotalProcess;
             timer.Tick += GetTotalThreads;
             timer.Start();
+        }
+        private void GetCpuTemperatures(object? sender, EventArgs e)
+        {
+            CpusTemperatures.Clear();
+
+            foreach (IHardware hardware in Computer.Hardware)
+            {
+                hardware.Update();
+
+                foreach (ISensor sensor in hardware.Sensors)
+                {
+                    if (sensor.SensorType == SensorType.Temperature)
+                    {
+                        CpusTemperatures.Add($"{sensor.Name}: {sensor.Value.GetValueOrDefault()} °C");
+                    }
+                }
+            }
         }
 
         private void GetCpuUsage(object? sender, EventArgs e)

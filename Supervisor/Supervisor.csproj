@@ -8,18 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="bg3.jpg" />
     <None Remove="bg4.jpg" />
     <None Remove="lenette_hAI_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.3" />
     <PackageReference Include="System.Management" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="bg3.jpg" />
     <Resource Include="bg4.jpg" />
     <Resource Include="lenette_hAI_icon.ico" />
   </ItemGroup>
