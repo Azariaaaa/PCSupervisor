@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="bg3.jpg" />
+    <None Remove="bg4.jpg" />
     <None Remove="lenette_hAI_icon.ico" />
   </ItemGroup>
 
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <Resource Include="bg3.jpg" />
+    <Resource Include="bg4.jpg" />
     <Resource Include="lenette_hAI_icon.ico" />
   </ItemGroup>
 
