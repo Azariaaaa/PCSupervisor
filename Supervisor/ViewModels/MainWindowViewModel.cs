@@ -55,7 +55,7 @@ namespace Supervisor.ViewModels
 
             timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMilliseconds(100),
+                Interval = TimeSpan.FromMilliseconds(355),
             };
             timer.Tick += GetCpuUsage;
             timer.Tick += GetRamUsage;
